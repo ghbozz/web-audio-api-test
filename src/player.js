@@ -46,6 +46,48 @@ export default class Player {
     }
   }
 
+  // isolate(toSolo){
+  //   if (this.solo === false) {
+  //     console.log("Mode solo inactif");
+  //     this.tracks.forEach((track) => {
+  //       if (track != toSolo && track.solo === false) {
+  //         track.mute(track);
+  //       }
+  //     })
+  //     this.solo = true;
+  //     console.log("Mode solo activé")
+  //     toSolo.solo = true;
+  //     console.log(`${toSolo.name} en solo`)
+  //   } else {
+  //     if (toSolo.solo === true) {
+  //       console.log("Mode solo actif")
+  //       toSolo.solo = false;
+  //       toSolo.nodeGain.gain.value = 0;
+  //       console.log(`${toSolo.name} mute`)
+  //       let runSolo = false;
+  //       this.tracks.forEach((track) => {
+  //         if (track.solo === true && track != toSolo) {
+  //           runSolo = true;
+  //         }
+  //       });
+  //       if (runSolo === false) {
+  //         console.log("No solo")
+  //         this.tracks.forEach((track) => {
+  //           track.nodeGain.gain.value = 1;
+  //         })
+  //         this.solo = false;
+  //         console.log("Mode solo inactivé");
+  //       }
+  //     } else {
+  //       toSolo.nodeGain.gain.value = 1;
+  //       toSolo.solo = true;
+  //       console.log(`${toSolo.name} en concert`)
+  //     }
+  //   }
+  // }
+
+  /////////////////////////////////////////////////
+
   isolate(toSolo){
     if (this.solo === false) {
       console.log("Mode solo inactif");
@@ -62,7 +104,7 @@ export default class Player {
       if (toSolo.solo === true) {
         console.log("Mode solo actif")
         toSolo.solo = false;
-        toSolo.nodeGain.gain.value = 0;
+        toSolo.mute(toSolo);
         console.log(`${toSolo.name} mute`)
         let runSolo = false;
         this.tracks.forEach((track) => {
@@ -73,13 +115,13 @@ export default class Player {
         if (runSolo === false) {
           console.log("No solo")
           this.tracks.forEach((track) => {
-            track.nodeGain.gain.value = 1;
+            track.mute(track);
           })
           this.solo = false;
           console.log("Mode solo inactivé");
         }
       } else {
-        toSolo.nodeGain.gain.value = 1;
+        toSolo.mute(toSolo);
         toSolo.solo = true;
         console.log(`${toSolo.name} en concert`)
       }
