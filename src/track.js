@@ -74,15 +74,15 @@ export default class Track {
     var lineOpacity = 400 / leftChannel.length  ;
     context.save();
     context.fillStyle = 'rgba(0,0,0,0)' ;
-    context.fillRect(0,0,400,50 );
+    context.fillRect(0,0,400,75 );
     context.strokeStyle = '#46a0ba';
     context.globalCompositeOperation = 'lighter';
-    context.translate(0,50 / 2);
+    context.translate(0,75 / 2);
     //context.globalAlpha = 0.6 ; // lineOpacity ;
-    context.lineWidth=2;
+    context.lineWidth=4;
     var totallength = leftChannel.length;
     var eachBlock = Math.floor(totallength / drawLines);
-    var lineGap = (400/drawLines);
+    var lineGap = (700/drawLines);
 
     context.beginPath();
     for(var i=0;i<=drawLines;i++){

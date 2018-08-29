@@ -26,9 +26,28 @@ export default class Player {
   loading(){
     this.count += 1
     if (this.count === this.max) {
-      const playBtn = document.getElementById('play')
-      playBtn.removeAttribute("disabled")
+      this.init();
     }
+  }
+
+  init() {
+    const playHead = document.querySelector('.playhead-container')
+    playHead.addEventListener('click', (event) => {
+      console.log(event.layerX)
+    });
+
+    const playBtn = document.getElementById('play');
+    playBtn.removeAttribute("disabled");
+
+    const play = document.getElementById('play')
+    play.addEventListener('click', (event) => {
+      this.play();
+    });
+
+    const clearBtn = document.getElementById('clear')
+    clearBtn.addEventListener('click', (event) => {
+      this.soloClear();
+    });
   }
 
   play(){
@@ -105,12 +124,11 @@ export default class Player {
     }
   }
 
-  frame(click_position) {
+  frame() {
     const duration = this.tracks[0].source.buffer.duration
     const width = this.tracks[0].canvas.clientWidth
     var elem = document.getElementById("playhead");
     let pos = ((this.audioContext.currentTime - this.time)/duration)*width
-    console.log(click_position)
     if (pos >= width) {
       clearInterval(this.playInterval);
       this.tracks.forEach((track) => {
@@ -121,8 +139,8 @@ export default class Player {
     }
   }
 
-  playHead(click_position) {
-    this.playInterval = setInterval(()=>{this.frame(click_position)}, 1000);
+  playHead() {
+    this.playInterval = setInterval(()=>{this.frame()}, 1000);
   }
 
   stopHead() {
