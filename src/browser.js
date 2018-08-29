@@ -27,3 +27,8 @@ play.addEventListener('click', (event) => {
   player.play();
 })
 
+const clearBtn = document.getElementById('clear')
+clearBtn.addEventListener('click', (event) => {
+  player.soloClear();
+});
+
