@@ -9,32 +9,36 @@
   <body>
 
     <!-- Add some HTML in here -->
-    <div class="container player-container">
+  <div class="container player-container">
       <button class="btn btn-primary" id="play" disabled>Play</button>
-      <button class="btn btn-danger" id="stop">Stop</button>
-      <button class="btn btn-info" id="clear">Clear</button>
+      <button class="btn btn-info" id="clear">Solo Clear</button>
 
 
+    <div class="tracks-container">
+      <div class="playhead-container">
+        <div id="playhead"></div>
+      </div>
       <ul class="tracks list-unstyled" id="track-container">
-        <li data-url="audiofiles/audio_1.mp3" data-name="track_1"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_2.mp3" data-name="track_2"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_4.mp3" data-name="track_4"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_5.mp3" data-name="track_5"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_6.mp3" data-name="track_6"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_7.mp3" data-name="track_7"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_8.mp3" data-name="track_8"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_9.mp3" data-name="track_9"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_10.mp3" data-name="track_10"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_11.mp3" data-name="track_11"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_12.mp3" data-name="track_12"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_13.mp3" data-name="track_13"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_14.mp3" data-name="track_14"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_15.mp3" data-name="track_15"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_16.mp3" data-name="track_16"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_17.mp3" data-name="track_17"><button class="mute">mute</button><button class="solo">solo</button></li>
-        <li data-url="audiofiles/audio_18.mp3" data-name="track_18"><button class="mute">mute</button><button class="solo">solo</button></li>
+        <li data-url="audiofiles/audio_1.mp3" data-name="track_1"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_2.mp3" data-name="track_2"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_4.mp3" data-name="track_4"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_5.mp3" data-name="track_5"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_6.mp3" data-name="track_6"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_7.mp3" data-name="track_7"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_8.mp3" data-name="track_8"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_9.mp3" data-name="track_9"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_10.mp3" data-name="track_10"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_11.mp3" data-name="track_11"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_12.mp3" data-name="track_12"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_13.mp3" data-name="track_13"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_14.mp3" data-name="track_14"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_15.mp3" data-name="track_15"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_16.mp3" data-name="track_16"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_17.mp3" data-name="track_17"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
+        <li data-url="audiofiles/audio_18.mp3" data-name="track_18"><button class="mute">mute</button><button class="solo">solo</button><canvas class="waveform" width="400px" height="50"></canvas></li>
       </ul>
     </div>
+  </div>
 
     <script src="build/application.js"></script>
   </body>

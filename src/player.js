@@ -8,6 +8,7 @@ export default class Player {
     this.status = 'stop';
     this.max = nodes.length;
     this.tracks = [];
+    this.time = 0
     this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
     nodes.forEach((node) => {
       const track = new Track(node, this.audioContext, this);
@@ -32,15 +33,23 @@ export default class Player {
 
   play(){
     if (this.status === 'stop') {
+      this.playHead();
+      this.time = this.audioContext.currentTime;
+      console.log(this.time)
       this.tracks.forEach((track) => {
         console.log('play')
         track.play();
         this.status = 'running'
       })
     } else if (this.status === 'running') {
+      // this.time = this.audioContext.currentTime
+      console.log(this.time)
       this.audioContext.suspend();
       this.status = 'paused'
+      this.stopHead();
     } else if (this.status === 'paused') {
+      console.log(this.time)
+      this.playHead();
       this.audioContext.resume();
       this.status = 'running'
     }
@@ -94,6 +103,30 @@ export default class Player {
         this.solo = false;
       });
     }
+  }
+
+  frame(click_position) {
+    const duration = this.tracks[0].source.buffer.duration
+    const width = this.tracks[0].canvas.clientWidth
+    var elem = document.getElementById("playhead");
+    let pos = ((this.audioContext.currentTime - this.time)/duration)*width
+    console.log(click_position)
+    if (pos >= width) {
+      clearInterval(this.playInterval);
+      this.tracks.forEach((track) => {
+        track.decode();
+      });
+    } else {
+      elem.style.left = pos + 'px';
+    }
+  }
+
+  playHead(click_position) {
+    this.playInterval = setInterval(()=>{this.frame(click_position)}, 1000);
+  }
+
+  stopHead() {
+    clearInterval(this.playInterval);
   }
 }
 

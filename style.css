@@ -8,3 +8,27 @@
 .player-container {
   width: 800px;
 }
+
+canvas {
+  /*background-color: rgba(20, 20, 20, 0.2);*/
+  background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+}
+
+#playhead {
+  height: 100%;
+  width: 1px;
+  position: absolute;
+  background-color: orange;
+}
+
+.tracks-container {
+  background-color: grey;
+}
+
+.playhead-container {
+  position: relative;
+  background-color: red;
+  margin-left: 90px;
+  width: 400px;
+  height: 50px;
+}
