@@ -9,6 +9,7 @@ export default class Player {
     this.max = nodes.length;
     this.tracks = [];
     this.time = 0
+    this.clickPosition = 0
     this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
     nodes.forEach((node) => {
       const track = new Track(node, this.audioContext, this);
@@ -34,6 +35,18 @@ export default class Player {
     const playHead = document.querySelector('.playhead-container')
     playHead.addEventListener('click', (event) => {
       console.log(event.layerX)
+      this.clickPosition = event.layerX
+      if (this.status === 'stop') {
+        this.tracks.forEach((track) => {
+          track.play(0, track.buffer.duration/(track.canvas.clientWidth/this.clickPosition))
+          this.status = 'running'
+        });
+        this.playHead();
+      } else {
+        // this.tracks.forEach((track) => {
+        //   track.play();
+        // });
+      }
     });
 
     const playBtn = document.getElementById('play');
@@ -56,7 +69,7 @@ export default class Player {
       this.time = this.audioContext.currentTime;
       console.log(this.time)
       this.tracks.forEach((track) => {
-        console.log('play')
+        console.log(this.audioContext.currentTime)
         track.play();
         this.status = 'running'
       })
@@ -131,6 +144,7 @@ export default class Player {
     let pos = ((this.audioContext.currentTime - this.time)/duration)*width
     if (pos >= width) {
       clearInterval(this.playInterval);
+      this.status = 'stop'
       this.tracks.forEach((track) => {
         track.decode();
       });
@@ -140,7 +154,7 @@ export default class Player {
   }
 
   playHead() {
-    this.playInterval = setInterval(()=>{this.frame()}, 1000);
+    this.playInterval = setInterval(()=>{this.frame()}, 100);
   }
 
   stopHead() {

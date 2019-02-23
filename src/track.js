@@ -47,8 +47,8 @@ export default class Track {
     this.displayBuffer(this.source.buffer)
   }
 
-  play(){
-    this.source.start(0);
+  play(time, offset){
+    this.source.start(time, offset);
   }
 
 
